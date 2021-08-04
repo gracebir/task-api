@@ -8,8 +8,9 @@ export class TaskService {
     constructor(@InjectModel('Task') private readonly taskModel: Model<ITask>){}
 
     async addTaskToDatabase(title:string){
-        const newTask = await new this.taskModel({title, completed: false});
-        return newTask.save();
+        const taskValue = {title:title, completed: false}
+        const task = await new this.taskModel(taskValue);
+        return task.save();
     }
 
     async fetchTask(){
