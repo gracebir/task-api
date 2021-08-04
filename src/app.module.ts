@@ -4,9 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TaskModule } from './task/task.module';
 
-//mongodb+srv://rachoder:Firewall12@mern.v8ddv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// mongodb://127.0.0.1:27017/tasks
+
 @Module({
-  imports: [TaskModule,MongooseModule.forRoot('mongodb://127.0.0.1:27017/task',{useFindAndModify:false})],
+  imports: [TaskModule,MongooseModule.forRoot(process.env.mongoUrl,{useFindAndModify:false})],
   controllers: [AppController],
   providers: [AppService],
 })
